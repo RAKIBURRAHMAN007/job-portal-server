@@ -59,7 +59,13 @@ async function run() {
 
 
     })
-
+ 
+    app.get('/jobApplications',async(req,res)=>{
+      const email = req.query.email;
+      const query = {applicant_email: email};
+      const result = await jobsApplicationsCollection.find(query).toArray();
+      res.send(result)
+    })
 
   } finally {
     // Ensures that the client will close when you finish/error
